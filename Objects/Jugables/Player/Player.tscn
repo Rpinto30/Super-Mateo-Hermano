@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://4mjsylffp80y"]
+
+[ext_resource type="SpriteFrames" uid="uid://di0etabv12m0f" path="res://Objects/Jugables/Player/player_sprite_frames.tres" id="1_qwc7o"]
+[ext_resource type="Script" uid="uid://r2lxfkaqebu3" path="res://Objects/Jugables/Player/player_controller.gd" id="1_xybha"]
+[ext_resource type="Script" uid="uid://dvh0it4s8s8qy" path="res://Objects/Jugables/Player/Camera_Player.gd" id="3_ljwo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwc7o"]
+size = Vector2(10, 14)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_xybha")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_qwc7o")
+debug_color = Color(0.28627452, 0.6313726, 0, 0.69411767)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_qwc7o")
+animation = &"Fall"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -50)
+zoom = Vector2(3.13, 3.13)
+limit_left = 0
+limit_smoothed = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("3_ljwo4")
+dead_zone_bottom = 1000
